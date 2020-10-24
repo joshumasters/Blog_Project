@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+	src/main/resources/static/CSS/standard.css
 
 
 </head>
@@ -29,12 +29,18 @@
 					<p th:text="${blog.blogEntry}">
 				</div>
 				<div class="panel-footer">
-
+					<form action="#" th:action="@{'/blogpost/{id}'(id=${blog.id})}" th:method="delete">
+						<div class="form-group">
+						<input type="hidden" name="_method" value="delete"/>
+						<a href="#" th:href="@{blogpost/{id}(id=${blog.id})}" class="card-link btn btn-danger">Delete Post</a>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
+	
 </div>
 </div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
