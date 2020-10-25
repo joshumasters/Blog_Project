@@ -15,7 +15,8 @@
 <Body>
     
 </Body>
-<form action="#" th:action="@{/blogpost/edit}" th:object="${blogPost}" method="post">
+<form action="#" th:action="@{~/blogpost/edit/{id}(id=${blogPost.id})}" th:object="${blogPost}"
+                method="POST">
     <table>
     <tr>
          <td>Title</td>

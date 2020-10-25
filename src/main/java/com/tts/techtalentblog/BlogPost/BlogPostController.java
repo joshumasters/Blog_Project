@@ -36,17 +36,36 @@ public class BlogPostController {
         return "blogpost/new";
     }
 
-    @RequestMapping(value = "/blogpost/edit/{id}")
-    public String editBlog(@PathVariable Long id, Model model){
-        Optional<BlogPost> editPost = blogPostRepository.findById(id);
-
-        BlogPost result = editPost.get();
-        model.addAttribute("blogPost", result);
-        blogPostRepository.save(result);
-        
-        return "/blogpost/new";
+    @RequestMapping(value = "/blogpost/{id}", method = RequestMethod.GET)
+    public String editPostWithId(@PathVariable Long id, BlogPost blogPost, Model model){
+        Optional<BlogPost> post = blogPostRepository.findById(id);
+        if (post.isPresent()) {
+            BlogPost actualPost = post.get();
+            model.addAttribute("blogPost", actualPost);
+        }
+        return "blogpost/edit";
     }
     
+    @RequestMapping(value = "/blogpost/edit/{id}", method = RequestMethod.POST)
+    public String updateExistingPost(@PathVariable Long id, BlogPost blogPost, Model model) {
+        Optional<BlogPost> post = blogPostRepository.findById(id);
+        if (post.isPresent()) {
+            BlogPost actualPost = post.get();
+            actualPost.setTitle(blogPost.getTitle());
+            actualPost.setAuthor(blogPost.getAuthor());
+            actualPost.setBlogEntry(blogPost.getBlogEntry());
+            blogPostRepository.save(actualPost);
+            model.addAttribute("blogPost", actualPost);
+            model.addAttribute("title", blogPost.getTitle());
+	        model.addAttribute("author", blogPost.getAuthor());
+	        model.addAttribute("blogEntry", blogPost.getBlogEntry());
+        }
+
+        return "blogpost/result";
+    }
+    {
+
+    }
     @PostMapping(value = "/blogpost")
     public String addNewBlogPost(BlogPost blogPost, Model model){
         blogPostRepository.save(new BlogPost(blogPost.getTitle(), blogPost.getAuthor(), blogPost.getBlogEntry()));
