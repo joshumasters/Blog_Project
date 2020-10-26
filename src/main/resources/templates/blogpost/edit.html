@@ -13,9 +13,32 @@
 
 </head>
 <Body>
-    
-</Body>
-<form action="#" th:action="@{~/blogpost/edit/{id}(id=${blogPost.id})}" th:object="${blogPost}"
+    <div class="container">
+    <div th:replace="fragments/navbar :: navbar"></div>
+    <form action="#" th:action="@{~/blogpost/edit/{id}(id=${blogPost.id})}" th:object="${blogPost}" method="POST">
+		<div class="form-group">
+		  <label for="exampleFormControlInput1">Blog Title</label>
+		  <input type="text" th:field="*{title}"  class="form-control" id="exampleFormControlInput1" placeholder="Whats on your mind?">
+		</div>
+		<div class="form-group">
+			<label for="exampleFormControlInput1">Author</label>
+			<input type="text" th:field="*{author}" class="form-control" id="exampleFormControlInput1" placeholder="Your name here!">
+		  </div>
+		<div class="form-group">
+		  <label for="exampleFormControlTextarea1">Your Blog</label>
+		  <textarea class="form-control" th:field="*{blogEntry}"  id="exampleFormControlTextarea1" rows="3"></textarea>
+		</div>
+		<div>
+			<button class="btn btn-primary" type="submit">Submit Your Post</button>
+		</div>
+	  </form>
+	<div id="back">
+	<a th:href="@{/}">
+		<button  class="btn btn-success">Back</button> 
+	</a>
+	</div>	
+
+<!-- <form action="#" th:action="@{~/blogpost/edit/{id}(id=${blogPost.id})}" th:object="${blogPost}"
                 method="POST">
     <table>
     <tr>
@@ -38,5 +61,8 @@
 
 <a th:href="@{/}">
     <button class="btn btn-success">Back</button> 
-</a>
+</a> -->
+</div>
+<div th:replace="fragments/styling :: javascripts"></div> 
+</Body>
 </html>

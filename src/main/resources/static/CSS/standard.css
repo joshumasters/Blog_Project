@@ -9,3 +9,29 @@ body{
 	padding-bottom: 10px;
 	border-radius: 5px; 
 }
+
+#navbar-border{
+	padding: 15px;
+}
+
+form{
+	padding: 15px;
+}
+
+#back{
+	padding-left: 15px;
+}
+
+.row{
+	padding: 15px;
+	justify-content: center;
+}
+
+.card{
+	text-align: center;
+
+}
+
+.card-subtitle{
+	text-align: left;
+}
